@@ -16,6 +16,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { TopNav } from "./_components/topnav";
+import { Toaster } from "../components/ui/sonner";
 
 export const metadata = {
   title: "Create T3 App",
@@ -43,13 +44,14 @@ export default function RootLayout({
         routerConfig={extractRouterConfig(ourFileRouter)}
       />
       <html lang="en" className={`${GeistSans.variable}`}>
-        <body className="">
+        <body className="dark">
           <div className="h-screen grid grid-rows-[auto,1fr]">
             <TopNav />
             <main className="overflow-y-scroll">{children}</main>
           </div>
           {modal}
           <div id="modal-root" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
