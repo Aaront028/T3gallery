@@ -21,7 +21,7 @@
 
 ## A challenge to the viewer
 
-- [ ] Fix the page layout for images of different resolution
+- [x] Fix the page layout for images of different resolution
 - [ ] "Selecting" images on the gallery page
 - [ ] "infinite scroll"
 - [ ] Folders/albums
