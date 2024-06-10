@@ -13,7 +13,6 @@ export default function PhotoModal({
   return (
     <Modal>
       <FullPageImageView id={idAsNumber} />
-      On the current page
     </Modal>
 
   )
