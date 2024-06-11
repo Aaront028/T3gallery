@@ -1,7 +1,6 @@
 import "server-only";
 import { db } from "./db";
 import { auth } from "@clerk/nextjs/server";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { images } from "./db/schema";
 import { and, eq } from "drizzle-orm";
