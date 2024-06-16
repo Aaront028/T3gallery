@@ -1,42 +1,26 @@
+// pages/page.tsx
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { clerkClient } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "~/server/db";
 import { getMyImages } from "~/server/queries";
+import SelectImagePage from "./_components/selectimagepage";
+import { useImageStore } from "./utils/store";
 
-export const dynamic = "force-dynamic"
+export const dynamic = "force-dynamic";
 
 async function Images() {
   const images = await getMyImages();
 
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">
-      {images.map(async (image) => {
-        const uploaderInfo = await clerkClient.users.getUser(image.userId);
-        return (
-          <div key={image.id} className="flex w-48 flex-col justify-center">
-            <Link href={`/img/${image.id}`}>
-              <Image
-                src={image.url}
-                width={192}
-                height={192}
-                style={{ objectFit: "contain" }}
-                alt={image.name}
-              />
-            </Link>
-            {/* <div>Uploader ID: {image.userId}</div>
-            <div>Uploader Name: {uploaderInfo.fullName}</div> */}
-          </div>
-        );
-      })}
+      {images.map(image => (
+        <SelectImagePage key={image.id} image={image} />
+      ))}
     </div>
   );
 }
 
-
-export default async function HomePage() {
-
+export default function HomePage() {
   return (
     <main className="">
       <SignedOut>
