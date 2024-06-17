@@ -57,3 +57,26 @@ export async function deleteImage(id: number) {
 
   redirect("/");
 }
+
+
+export async function deleteSelectedImages(ids: number[]) {
+  const user = auth();
+
+  if (!user.userId) throw new Error("Unauthorized");
+
+  for (const id of ids) {
+    await db
+      .delete(images)
+      .where(and(eq(images.id, id), eq(images.userId, user.userId)));
+
+    analyticsServerClient.capture({
+      distinctId: user.userId,
+      event: "delete image",
+      properties: {
+        imageId: id,
+      },
+    });
+  }
+
+  redirect("/");
+}

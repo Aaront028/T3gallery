@@ -1,4 +1,5 @@
-'use client';
+'use client'; // Ensure this is at the top
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
