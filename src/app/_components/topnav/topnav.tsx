@@ -20,7 +20,9 @@ export function TopNav() {
     )
   }
 
-
+  const handleDeselectButton = () => {
+    clearSelection();
+  }
 
   const handleDeleteSelected = () => {
     if (selectedImages.size === 0) {
@@ -99,12 +101,18 @@ export function TopNav() {
           <SignedOut>
             <SignInButton />
           </SignedOut>
-          <button
+          {(selectedImages.size !== 0) && <button
             className="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md text-white"
             onClick={handleDeleteSelected}
           >
             Delete Selected
-          </button>
+          </button>}
+          {(selectedImages.size !== 0) && <button
+            className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-white"
+            onClick={handleDeselectButton}
+          >
+            Deselected All
+          </button>}
           <SignedIn>
             <SimpleUploadButton />
             <UserButton />

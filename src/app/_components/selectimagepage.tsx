@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useImageStore } from '../utils/store';
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 
 interface ImageData {
   id: number;
@@ -18,6 +19,7 @@ interface SelectImagePageProps {
 const SelectImagePage: React.FC<SelectImagePageProps> = ({ image }) => {
   const { selectedImages, selectImage, deselectImage } = useImageStore();
   const [isHovered, setIsHovered] = useState(false);
+
 
   const toggleSelectImage = (id: number) => {
     if (selectedImages.has(id)) {

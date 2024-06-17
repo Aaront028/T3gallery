@@ -6,11 +6,13 @@ import Link from "next/link";
 import { getMyImages } from "~/server/queries";
 import SelectImagePage from "./_components/selectimagepage";
 import { useImageStore } from "./utils/store";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const dynamic = "force-dynamic";
 
 async function Images() {
   const images = await getMyImages();
+  const userInfo = await currentUser();
 
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">

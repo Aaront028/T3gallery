@@ -59,24 +59,24 @@ export async function deleteImage(id: number) {
 }
 
 
-export async function deleteSelectedImages(ids: number[]) {
-  const user = auth();
+// export async function deleteSelectedImages(ids: number[]) {
+//   const user = auth();
 
-  if (!user.userId) throw new Error("Unauthorized");
+//   if (!user.userId) throw new Error("Unauthorized");
 
-  for (const id of ids) {
-    await db
-      .delete(images)
-      .where(and(eq(images.id, id), eq(images.userId, user.userId)));
+//   for (const id of ids) {
+//     await db
+//       .delete(images)
+//       .where(and(eq(images.id, id), eq(images.userId, user.userId)));
 
-    analyticsServerClient.capture({
-      distinctId: user.userId,
-      event: "delete image",
-      properties: {
-        imageId: id,
-      },
-    });
-  }
+//     analyticsServerClient.capture({
+//       distinctId: user.userId,
+//       event: "delete image",
+//       properties: {
+//         imageId: id,
+//       },
+//     });
+//   }
 
-  redirect("/");
-}
+//   redirect("/");
+// }
